@@ -21,3 +21,9 @@ class DeviceHandler:
 
     def get_user_packages(self) -> list[str]:
         return self.get_all_packages(user_installed_only=True)
+
+    def launch_app(self, package_name: str):
+        # adb shell monkey -p com.example.app -c android.intent.category.LAUNCHER 1
+        return self.device.shell(
+            f"monkey -p {package_name} -c android.intent.category.LAUNCHER 1"
+        )

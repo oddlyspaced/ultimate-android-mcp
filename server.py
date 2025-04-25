@@ -31,3 +31,17 @@ def user_packages() -> list[str]:
 def system_packages() -> list[str]:
     """Get list of all system packages in the connected Android device"""
     return handler.get_system_packages()
+
+
+@mcp.tool()
+def launch_app(package_name: str) -> str:
+    """Launches an app with the given package name in the connected Android device"""
+    try:
+        handler.launch_app(package_name)
+        return f"Successfully Launched {package_name}"
+    except:
+        return f"Error Launching {package_name}"
+
+
+if __name__ == "__main__":
+    mcp.run(transport="stdio")
