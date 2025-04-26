@@ -62,6 +62,20 @@ def input_keyevent(keycode: int):
     return handler.input_keyevent(keycode)
 
 
+# Tool: Back button
+@mcp.tool()
+def input_back():
+    """Simulates a back button event on the connected Android device. No parameters are required."""
+    return handler.input_back()
+
+
+# Tool: Home button
+@mcp.tool()
+def input_home():
+    """Simulates a home button event on the connected Android device. No parameters are required."""
+    return handler.input_home()
+
+
 # Tool: Input tap
 @mcp.tool()
 def input_tap(x: int, y: int):

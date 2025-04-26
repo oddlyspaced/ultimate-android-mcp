@@ -8,6 +8,12 @@ class InputHandler:
     def input_keyevent(self, keycode):
         return self.device.input_keyevent(keycode)
 
+    def input_back(self):
+        return self.device.input_keyevent("KEYCODE_BACK")
+
+    def input_home(self):
+        return self.device.input_keyevent("KEYCODE_HOME")
+
     def input_tap(self, x, y):
         return self.device.input_tap(x, y)
 
