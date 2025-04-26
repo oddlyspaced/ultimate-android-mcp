@@ -5,12 +5,8 @@ from config import AndroidMCPConfig
 
 
 class UIHandler:
-    def __init__(self, device: Device, config: AndroidMCPConfig):
+    def __init__(self, device: Device):
         self.device = device
-        if config.device_temp_folder:
-            self.temp_folder = config.device_temp_folder
-        else:
-            self.temp_folder = "/sdcard/.androidmcp"
 
     def get_current_ui_labels(self):
         self.device.shell("uiautomator dump")

@@ -23,7 +23,7 @@ class DeviceManager:
             self.package = PackageHandler(self.device)
             self.process_info = ProcessInfoHandler(self.device)
             self.shell = ShellHandler(self.device)
-            self.ui = UIHandler(self.device, config)
+            self.ui = UIHandler(self.device)
 
         else:
             self.cpu_info = None
