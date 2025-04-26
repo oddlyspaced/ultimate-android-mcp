@@ -1,4 +1,4 @@
-# Ultimate Android MCP
+# Ultimate Android MCP 🤖
 
 ## 📝 Description
 Ultimate Android MCP is a powerful and versatile MCP (Model Context Protocol) server designed to interact with connected Android devices. It provides a wide range of tools and functionalities to perform various tasks on Android devices, such as managing applications, interacting with the UI, retrieving device information, and more. This project aims to provide the widest set of capabilities to ensure optimal interaction via LLMs using the Model Context Protocol.
@@ -164,7 +164,7 @@ python server.py
 - Often times after continously querying the user interface, results might become unavailable temporarily unless device is restarted. This is an issue with dumping the current UI tree. Logic will be updated to fix this shortly.
 
 
-## Technologies Used
+## 💻 Technologies Used
 - Python
 - [MCP - Model Context Protocol](https://modelcontextprotocol.io/introduction)
 - [pure-python-adb](https://pypi.org/project/pure-python-adb/)
