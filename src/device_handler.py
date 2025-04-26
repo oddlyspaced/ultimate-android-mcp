@@ -105,4 +105,4 @@ class DeviceHandler:
         self.device.shell(f"input text {text.replace(' ', '%s')}")
 
     def execute_adb_shell(self, command: str):
-        self.device.shell(command)
+        return self.device.shell(command)
