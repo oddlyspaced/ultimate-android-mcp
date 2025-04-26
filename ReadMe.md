@@ -59,8 +59,8 @@ The MCP server provides the following features:
 ## Prerequisites
 To run this project, ensure you have the following:
 
-- Python 3.12 or higher.
-- ADB (Android Debug Bridge) installed and configured on your system.
+- Python 3.
+- ADB (Android Debug Bridge) installed and configured on your system (ensure that ```adb``` command works).
 - A connected Android device with USB debugging enabled.
 - The `pure-python-adb` library installed (included in the project dependencies).
 
@@ -69,22 +69,33 @@ Follow these steps to set up the project:
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
-   cd android-mcp-py
+   git clone https://github.com/oddlyspaced/android-mcp.git
+   cd android-mcp
    ```
+2. Install the required libraries:
+    
+    By default this project uses ```uv``` for dependency management, however you can install the required packages via pip if you like.
+    ```bash
+    uv sync
+    ```
+    or
+    ```bash
+    pip install pure-python-adb
+    ```
 
-2. Create a virtual environment and activate it:
-   ```bash
-   python3 -m venv .venv
-   source .venv/bin/activate  # On Windows, use .venv\Scripts\activate
-   ```
+3. Configure the project by editing the `config.py` file to match your ADB setup and device details. (More in next section)
+4. Run ```doctor.py``` to ensure that the setup is done correctly.
 
-3. Install the required dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+    Here is reference response from the ```doctor.py``` script :
+    ```
+    Checking device connection using the following configuration:
+    ADB Client Host: 127.0.0.1
+    ADB Client Port: 5037
+    ADB Device Serial: 32241FDH3002EH
 
-4. Configure the project by editing the `config.py` file to match your ADB setup and device details.
+    Device connected: 32241FDH3002EH
+    Hello from Android! Ready to use with MCP.
+    ``` 
 
 ## Configuration Overview
 The `config.py` file contains the following configuration options:
@@ -92,41 +103,49 @@ The `config.py` file contains the following configuration options:
 - `adb_client_host`: The host address of the ADB server (default: `127.0.0.1`).
 - `adb_client_port`: The port of the ADB server (default: `5037`).
 - `adb_device_serial`: The serial number or IP address of the connected device. If not specified, the first available device will be used.
-- `device_temp_folder`: The temporary folder on the device for storing intermediate files (default: `/sdcard/.androidmcp`).
 
 ## Usage via Claude MCP Config JSON
-To use the MCP server, you can interact with it via a Claude MCP configuration JSON. Here is an example configuration:
+To use the MCP server, you can interact with it via Claude Desktop MCP configuration JSON. 
+
+The Claude Desktop configuration file is present at the following locations:
+
+    Windows: %APPDATA%\Claude\claude_desktop_config.json
+    
+    macOS: ~/Library/Application Support/Claude/claude_desktop_config.json
+
+Here is an example configuration using ```uv```:
+
 
 ```json
 {
-  "transport": "stdio",
-  "tools": [
-    {
-      "name": "all_packages",
-      "description": "Retrieve a list of all installed packages."
-    },
-    {
-      "name": "launch_app",
-      "description": "Launch an app by its package name.",
-      "parameters": {
-        "package_name": "com.example.app"
-      }
-    },
-    {
-      "name": "input_tap",
-      "description": "Simulate a tap gesture.",
-      "parameters": {
-        "x": 100,
-        "y": 200
-      }
+  "mcpServers": {
+    "Android MCP": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/Users/hardik/Projects/Android-Agents/android-mcp", // Replace this with your folder path
+        "run",
+        "server.py"
+      ]
     }
-  ]
+  }
+}
+```
+or with python
+```json
+{
+  "mcpServers": {
+    "Android MCP": {
+      "command": "python",
+      "args": [
+        "/Users/hardik/Projects/Android-Agents/android-mcp/server.py", // Replace this with your folder path
+      ]
+    }
+  }
 }
 ```
 
-Run the MCP server using the following command:
+Alternatively, you can run the MCP server using the following command:
 ```bash
 python server.py
 ```
-
-You can then use the tools defined in the JSON configuration to interact with the connected Android device.
