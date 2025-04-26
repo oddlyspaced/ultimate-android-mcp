@@ -36,6 +36,14 @@ class DeviceManager:
             self.ui = None
 
     def _initialize_device(self, config: AndroidMCPConfig):
+        # sanitsize config object
+        if hasattr(config, "adb_client_host") == False:
+            config.adb_client_host = "127.0.0.1"
+        if hasattr(config, "adb_client_port") == False:
+            config.adb_client_port = 5037
+        if hasattr(config, "adb_device_serial") == False:
+            config.adb_device_serial = None
+
         client = AdbClient(host=config.adb_client_host, port=config.adb_client_port)
         try:
             if config.adb_device_serial:
