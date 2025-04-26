@@ -65,7 +65,9 @@ Physical device (Pixel 7 Pro running Android 15) connected via USB, which is hav
 
 Claude then figured out how to launch the app, which button to click and what text to enter where. Everything in the demo is autonomous with no user interaction in between.
 
-// Add video here
+
+https://github.com/user-attachments/assets/5811fcc1-9047-48be-b057-1049754710c0
+
 
 ## 📋 Prerequisites
 To run this project, ensure you have the following:
