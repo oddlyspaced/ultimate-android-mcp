@@ -1,12 +1,12 @@
 # Ultimate Android MCP
 
-## Description
+## 📝 Description
 Ultimate Android MCP is a powerful and versatile MCP (Model Context Protocol) server designed to interact with connected Android devices. It provides a wide range of tools and functionalities to perform various tasks on Android devices, such as managing applications, interacting with the UI, retrieving device information, and more. This project aims to provide the widest set of capabilities to ensure optimal interaction via LLMs using the Model Context Protocol.
 
-## Features
+## ✨ Features
 The MCP server provides the following features:
 
-### Application Management
+### 📱 Application Management
 - Retrieve a list of all installed packages (system and user-installed).
 - Retrieve a list of user-installed application package names.
 - Retrieve a list of system application package names (pre-installed apps).
@@ -15,7 +15,7 @@ The MCP server provides the following features:
 - Uninstall a specified package from the device.
 - Check if a specified package is installed on the device.
 
-### Input Simulation
+### 🎮 Input Simulation
 - Simulate input events such as key presses, taps, swipes, and text input.
 - Simulate a key event with a specified keycode.
 - Simulate a tap gesture at specified (x, y) coordinates.
@@ -25,7 +25,7 @@ The MCP server provides the following features:
 - Simulate a swipe gesture from one coordinate to another with an optional duration.
 - Check if the virtual keyboard is currently open.
 
-### Device Information
+### 📊 Device Information
 - Retrieve device-specific information, including serial number, properties, and battery level.
 - Retrieve the serial number of the connected Android device.
 - Retrieve build.prop properties of the device.
@@ -34,7 +34,7 @@ The MCP server provides the following features:
 - Retrieve the screen density of the device.
 - Retrieve the screen size of the device.
 
-### System and Performance Monitoring
+### 🖥️ System and Performance Monitoring
 - Retrieve CPU information, such as core count and load percentage.
 - Retrieve the number of CPU cores on the device.
 - Retrieve the current CPU load percentage on the device.
@@ -43,20 +43,20 @@ The MCP server provides the following features:
 - Retrieve the activities currently on top of the device.
 - Retrieve the singular activity currently on top of the device.
 
-### File Management
+### 📂 File Management
 - Manage files on the device, including pushing and pulling files.
 - Pull a file from the connected Android device to the local machine.
 - Push a file from the local machine to the connected Android device.
 
-### UI Interaction
+### 🖱️ UI Interaction
 - Retrieve UI elements and focused nodes from the device screen.
 - Retrieve a list of UI nodes currently visible on the device screen, focusing on text labels and content descriptions.
 - Retrieve a list of UI nodes that are currently focused on the device screen.
 
-### Advanced Operations
+### ⚙️ Advanced Operations
 - Execute raw ADB shell commands and retrieve the output.
 
-## Demo
+## 🎥 Demo
 Physical device (Pixel 7 Pro running Android 15) connected via USB, which is having its screen shared via scrcpy. Using Claude for Desktop (Version 0.9.2). The text provided to Claude was the following :
 
 ```In the connected android device, play the song 'mask off' by future on spotify.```
@@ -65,7 +65,7 @@ Claude then figured out how to launch the app, which button to click and what te
 
 // Add video here
 
-## Prerequisites
+## 📋 Prerequisites
 To run this project, ensure you have the following:
 
 - Python 3.
@@ -73,12 +73,12 @@ To run this project, ensure you have the following:
 - A connected Android device with USB debugging enabled.
 - The `pure-python-adb` library installed (included in the project dependencies).
 
-## Installation and Setup
+## ⚙️ Installation and Setup
 Follow these steps to set up the project:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/oddlyspaced/android-mcp.git
+   git clone https://github.com/oddlyspaced/ultimate-android-mcp.git android-mcp
    cd android-mcp
    ```
 2. Install the required libraries:
@@ -106,14 +106,14 @@ Follow these steps to set up the project:
     Hello from Android! Ready to use with MCP.
     ``` 
 
-## Configuration Overview
+## 🛠️ Configuration Overview
 The `config.py` file contains the following configuration options:
 
 - `adb_client_host`: The host address of the ADB server (default: `127.0.0.1`).
 - `adb_client_port`: The port of the ADB server (default: `5037`).
 - `adb_device_serial`: The serial number or IP address of the connected device. If not specified, the first available device will be used.
 
-## Usage via Claude MCP Config JSON
+## 🖥️ Usage via Claude MCP Config JSON
 To use the MCP server, you can interact with it via Claude Desktop MCP configuration JSON. 
 
 The Claude Desktop configuration file is present at the following locations:
@@ -160,6 +160,14 @@ python server.py
 ```
 
 
-## Known Issues
-After continously querying the user interface, results might become unavailable temporarily unless device is restarted. This is an issue with dumping the current UI tree. Logic will be updated to fix this shortly.
+## 🐞 Known Issues
+- Often times after continously querying the user interface, results might become unavailable temporarily unless device is restarted. This is an issue with dumping the current UI tree. Logic will be updated to fix this shortly.
 
+
+## Technologies Used
+- Python
+- [MCP - Model Context Protocol](https://modelcontextprotocol.io/introduction)
+- [pure-python-adb](https://pypi.org/project/pure-python-adb/)
+
+## Contributors
+- Hardik Srivastava ([oddlyspaced](https://github.com/oddlypsaced))
