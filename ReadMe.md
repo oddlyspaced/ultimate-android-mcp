@@ -56,6 +56,15 @@ The MCP server provides the following features:
 ### Advanced Operations
 - Execute raw ADB shell commands and retrieve the output.
 
+## Demo
+Physical device (Pixel 7 Pro running Android 15) connected via USB, which is having its screen shared via scrcpy. Using Claude for Desktop (Version 0.9.2). The text provided to Claude was the following :
+
+```In the connected android device, play the song 'mask off' by future on spotify.```
+
+Claude then figured out how to launch the app, which button to click and what text to enter where. Everything in the demo is autonomous with no user interaction in between.
+
+// Add video here
+
 ## Prerequisites
 To run this project, ensure you have the following:
 
@@ -149,3 +158,8 @@ Alternatively, you can run the MCP server using the following command:
 ```bash
 python server.py
 ```
+
+
+## Known Issues
+After continously querying the user interface, results might become unavailable temporarily unless device is restarted. This is an issue with dumping the current UI tree. Logic will be updated to fix this shortly.
+
