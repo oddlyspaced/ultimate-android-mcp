@@ -1,12 +1,9 @@
 from mcp.server.fastmcp import FastMCP
-from ppadb.client import Client as AdbClient
-from src.device_manager import DeviceHandler
+from src.device_manager import DeviceManager
+from config import AndroidMCPConfig
 
-client = AdbClient(host="127.0.0.1", port=5037)
-devices = client.devices()
-
-# create reference to first connected adb device
-handler = DeviceHandler(devices[0])
+config = AndroidMCPConfig()
+handler = DeviceManager(config)
 
 # Create an MCP server
 mcp = FastMCP("Android MCP")
