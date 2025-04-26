@@ -24,6 +24,8 @@ The MCP server provides the following features:
 - Simulate a rolling gesture with specified dx and dy values.
 - Simulate a swipe gesture from one coordinate to another with an optional duration.
 - Check if the virtual keyboard is currently open.
+- Simulate a back button press.
+- Simulate a home button press.
 
 ### 📊 Device Information
 - Retrieve device-specific information, including serial number, properties, and battery level.
