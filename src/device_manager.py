@@ -1,6 +1,14 @@
 from config import AndroidMCPConfig
-from src.device_handler import DeviceHandler
 from ppadb.client import Client as AdbClient
+
+from src.handlers.cpu_info_handler import CpuInfoHandler
+from src.handlers.device_info_handler import DeviceInfoHandler
+from src.handlers.file_handler import FileHandler
+from src.handlers.input_handler import InputHandler
+from src.handlers.package_handler import PackageHandler
+from src.handlers.process_info_handler import ProcessInfoHandler
+from src.handlers.shell_handler import ShellHandler
+from src.handlers.ui_handler import UIHandler
 
 
 # wrapper class that references the config to create the device object, and also handle scenarios where a device would not be connected
@@ -8,9 +16,24 @@ class DeviceManager:
     def __init__(self, config: AndroidMCPConfig):
         self.device = self._initialize_device(config)
         if self.device:
-            self.handler = DeviceHandler(self.device)
+            self.cpu_info = CpuInfoHandler(self.device)
+            self.device_info = DeviceInfoHandler(self.device)
+            self.file = FileHandler(self.device)
+            self.input = InputHandler(self.device)
+            self.package = PackageHandler(self.device)
+            self.process_info = ProcessInfoHandler(self.device)
+            self.shell = ShellHandler(self.device)
+            self.ui = UIHandler(self.device, config)
+
         else:
-            self.handler = None
+            self.cpu_info = None
+            self.device_info = None
+            self.file = None
+            self.input = None
+            self.package = None
+            self.process_info = None
+            self.shell = None
+            self.ui = None
 
     def _initialize_device(self, config: AndroidMCPConfig):
         client = AdbClient(host=config.adb_client_host, port=config.adb_client_port)
@@ -25,14 +48,25 @@ class DeviceManager:
             return None
 
     def __getattr__(self, name):
-        if not self.handler:
+        if not self.device:
 
             def device_not_connected(*args, **kwargs):
                 return f"Unable to execute {name}! Device is not connected!"
 
             return device_not_connected
 
-        attr = getattr(self.handler, name, None)
-        if attr is None:
-            raise AttributeError(f"'DeviceHandler' object has no attribute '{name}'")
-        return attr
+        # Search for the attribute across all handler objects
+        for handler in [
+            self.cpu_info,
+            self.device_info,
+            self.file,
+            self.input,
+            self.package,
+            self.process_info,
+            self.shell,
+            self.ui,
+        ]:
+            if handler and hasattr(handler, name):
+                return getattr(handler, name)
+
+        raise AttributeError(f"'DeviceManager' object has no attribute '{name}'")
