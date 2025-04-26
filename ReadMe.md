@@ -173,3 +173,10 @@ python server.py
 
 ## Contributors
 - Hardik Srivastava ([oddlyspaced](https://github.com/oddlypsaced))
+
+## 📜 License
+This project is licensed under the GNU General Public License v3.0. You may obtain a copy of the license at:
+
+[https://www.gnu.org/licenses/gpl-3.0.en.html](https://www.gnu.org/licenses/gpl-3.0.en.html)
+
+This license allows you to use, modify, and distribute the software, provided that any modifications or derivative works are also licensed under the GPL. For more details, refer to the license documentation.
