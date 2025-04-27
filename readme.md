@@ -94,6 +94,7 @@ Follow these steps to set up the project:
     or
     ```bash
     pip install pure-python-adb
+    pip install mcp
     ```
 
 3. Configure the project by editing the `config.py` file to match your ADB setup and device details. (More in next section)
